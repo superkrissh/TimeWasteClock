@@ -175,9 +175,24 @@ window.onload = () => {
 /* ------------ EGO-KILLER MOTIVATION MESSAGES ------------ */
 
 const egoMessages = [
+    "Stay cool!",
+    "Raise your Ego so high...Losing people fells like blessing not a loss",
+    "Level up so hard...their biggest flex is that they used to know you",
+    "Their is still time To Be who you wanted to be",
+    "Yor life isn't yours if you always care what other think",
+    "Darling they always came back when they see you are glowing without them",
+    "Grow your one skill everyday and one day that skill became your SuperPower!",
+    "I am Billionaire...Ilive Billionaire...I fell Billionaire...I Atrract Billionaire...I think Billionaire...I become Billionaire",
+    "If people don't match your mindset, then change people ,Not the Mindset",
+    "When you start getting in shape and suddenly they start liking you for your personality",
+    "Dont stop when you are tired..stop when you are done",
+    "The day you start respecting yourself and your work... you will unstopable",
+    "Practice makes perfect",
+    "Fuck fellings bro...Focus on the come back",
     "Mein tujhe bhav hi kha deti hoon.",
     "Chal tu ab bhag yaha se.",
     "Tu seriously lene layak hi nahi hai.",
+    "Dont compare yourself to me... to train to impress girls,I train to be the Best",
     "DSA padhle… warna fir rona mat.",
     "Uske peeche apna time waste mat kar.",
     "Focus. Tu bas time barbaad kar raha hai.",
@@ -189,6 +204,10 @@ const egoMessages = [
     "Tu itna potential waste kyu karta rehta hai?",
     "Time kam hai, excuses zyada mat bana.",
     "Tu khud se hi peeche reh jayega.",
+    "Failure is just Perception... Not The End",
+    "Ask Yourself Who you are?",
+    "You are not a man...a man doesn't waste hrs on scrolling",
+    "People start missing you when they fail to replace you",
     "Aage badh — ruk mat, warna pachhtayega."
 ];
 
