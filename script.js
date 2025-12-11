@@ -211,15 +211,21 @@ const egoMessages = [
     "Aage badh — ruk mat, warna pachhtayega."
 ];
 
+let egoIndex = 0;
+
 function showEgoMessage() {
-    const msg ;
-    // const msg = egoMessages[Math.floor(Math.random() * egoMessages.length)];
-    for(let i = 0 ; i<egoMessages.length ;i++){
-        msg = egoMessages[i];
-        document.getElementById("motiLine").innerHTML =
-        `<span>${msg}</span>`;
+    const msg = egoMessages[egoIndex];
+
+    document.getElementById("motiLine").innerHTML = `<span>${msg}</span>`;
+
+    egoIndex++;
+
+    // If reached end → start again
+    if (egoIndex >= egoMessages.length) {
+        egoIndex = 0;
     }
 }
 
-setInterval(showEgoMessage, 10000);
+
+setInterval(showEgoMessage, 5000);
 setTimeout(showEgoMessage, 2000);
