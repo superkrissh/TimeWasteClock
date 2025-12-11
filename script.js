@@ -212,9 +212,13 @@ const egoMessages = [
 ];
 
 function showEgoMessage() {
-    const msg = egoMessages[Math.floor(Math.random() * egoMessages.length)];
-    document.getElementById("motiLine").innerHTML =
+    const msg ;
+    // const msg = egoMessages[Math.floor(Math.random() * egoMessages.length)];
+    for(let i = 0 ; i<egoMessages.length ;i++){
+        msg = egoMessages[i];
+        document.getElementById("motiLine").innerHTML =
         `<span>${msg}</span>`;
+    }
 }
 
 setInterval(showEgoMessage, 10000);
