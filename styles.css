@@ -47,11 +47,19 @@ body {
 }
 
 #motiLine {
-    margin-top: 12px;
-    font-size: 22px;
-    min-height: 30px;
-    text-shadow: 0 0 15px #ff4fa7;
+    margin-top: 25px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ff6bcb;
+    text-shadow: 0 0 12px #ff69dc;
+    animation: fadeText 0.8s ease;
 }
+
+@keyframes fadeText {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
 
 #countdown {
     margin-top: 10px;
