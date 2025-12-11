@@ -219,12 +219,9 @@ function showEgoMessage() {
     document.getElementById("motiLine").innerHTML = `<span>${msg}</span>`;
 
     egoIndex++;
-
-    // If reached end → start again
-    if (egoIndex >= egoMessages.length) {
-        egoIndex = 0;
-    }
+    if (egoIndex >= egoMessages.length) egoIndex = 0;
 }
+
 
 
 setInterval(showEgoMessage, 5000);
