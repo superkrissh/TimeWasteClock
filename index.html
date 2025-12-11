@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Galaxy Countdown Clock</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="clock-wrap">
+    <div id="realTime"></div>
+    <div id="taskName"></div>
+    <div id="countdown"></div>
+    <div id="motiLine"></div> <!-- Motivational roast line -->
+    <button class="edit-btn" onclick="editGoal()">Edit Goal</button>
+</div>
+
+<div id="setupBox">
+    <h2>Set Goal</h2>
+    <input type="text" id="taskInput" placeholder="Task name">
+    <input type="datetime-local" id="dateInput">
+    <button onclick="saveGoal()">Save</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

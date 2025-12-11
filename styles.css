@@ -1,0 +1,117 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    text-align: center;
+    background: black;
+}
+
+/* Stars */
+#stars {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: -10;
+    background: black;
+}
+
+/* Center panel */
+.clock-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 580px;
+    padding: 40px;
+    border-radius: 20px;
+
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(12px);
+
+    box-shadow: 0 0 40px rgba(0,255,255,0.6),
+                inset 0 0 50px rgba(0,255,255,0.2);
+}
+
+#realTime {
+    font-size: 55px;
+    margin-bottom: 25px;
+    text-shadow: 0 0 20px cyan;
+}
+
+#taskName {
+    font-size: 32px;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px pink;
+}
+
+#motiLine {
+    margin-top: 12px;
+    font-size: 22px;
+    min-height: 30px;
+    text-shadow: 0 0 15px #ff4fa7;
+}
+
+#countdown {
+    margin-top: 10px;
+    font-size: 26px;
+    line-height: 1.7;
+    text-shadow: 0 0 15px #00ffc8;
+}
+
+.edit-btn {
+    margin-top: 25px;
+    padding: 15px 25px;
+    font-size: 18px;
+    border: none;
+    color: white;
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+}
+
+/* Goal setup modal */
+#setupBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 350px;
+    padding: 30px;
+    background: rgba(0,0,0,0.85);
+    border-radius: 15px;
+    display: none;
+    color: white;
+
+    box-shadow: 0 0 25px #00ffff;
+    backdrop-filter: blur(15px);
+
+    z-index: 999;
+}
+
+#setupBox input {
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid #666;
+    color: white;
+    border-radius: 8px;
+}
+
+#setupBox button {
+    margin-top: 18px;
+    padding: 10px;
+    width: 100%;
+
+    background: #00eaff;
+    color: black;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
