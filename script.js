@@ -40,21 +40,22 @@ function updateClock() {
 }
 setInterval(updateClock, 1000);
 
-/* ------------ SOUND SYSTEM (WEB AUDIO API) ------------ */
-
+/* ------------ SOUND SYSTEM ------------ */
 const enableBtn = document.createElement("button");
 enableBtn.innerText = "Enable Sound (click once)";
-enableBtn.style.position = "fixed";
-enableBtn.style.right = "20px";
-enableBtn.style.bottom = "20px";
-enableBtn.style.padding = "14px 18px";
-enableBtn.style.borderRadius = "10px";
-enableBtn.style.border = "none";
-enableBtn.style.background = "#00eaff";
-enableBtn.style.color = "black";
-enableBtn.style.fontWeight = "700";
-enableBtn.style.cursor = "pointer";
-enableBtn.style.zIndex = 99999;
+Object.assign(enableBtn.style, {
+    position: "fixed",
+    right: "20px",
+    bottom: "20px",
+    padding: "14px 18px",
+    borderRadius: "10px",
+    border: "none",
+    background: "#00eaff",
+    color: "black",
+    fontWeight: "700",
+    cursor: "pointer",
+    zIndex: 99999
+});
 document.body.appendChild(enableBtn);
 
 let audioCtx = null;
@@ -68,23 +69,21 @@ async function enableAudio() {
         masterGain.gain.value = 1.25;
         masterGain.connect(audioCtx.destination);
     }
-    if (audioCtx.state === "suspended") {
-        await audioCtx.resume();
-    }
+    if (audioCtx.state === "suspended") await audioCtx.resume();
     audioUnlocked = true;
     enableBtn.style.display = "none";
 }
 
 function playTick() {
-    if (!audioUnlocked || !audioCtx) return;
+    if (!audioUnlocked) return;
 
     const now = audioCtx.currentTime;
-
     const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+
     osc.type = "square";
     osc.frequency.value = 1000;
 
-    const g = audioCtx.createGain();
     g.gain.setValueAtTime(0.001, now);
     g.gain.linearRampToValueAtTime(1.0, now + 0.01);
     g.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
@@ -108,24 +107,14 @@ enableBtn.addEventListener("click", async () => {
     startTicks();
 });
 
-window.addEventListener("click", async () => {
-    if (!audioUnlocked) {
-        await enableAudio();
-        startTicks();
-    }
-});
-
 /* ------------ COUNTDOWN ------------ */
 function updateCountdown() {
     let target = localStorage.getItem("targetDate");
     if (!target) return;
 
-    let now = new Date();
-    let end = new Date(target);
-    let diff = end - now;
-
+    let diff = new Date(target) - new Date();
     if (diff <= 0) {
-        document.getElementById("countdown").innerHTML = "TIME'S UP!";
+        document.getElementById("countdown").innerText = "TIME'S UP!";
         return;
     }
 
@@ -144,8 +133,8 @@ setInterval(updateCountdown, 1000);
 
 /* ------------ GOAL SETUP ------------ */
 function saveGoal() {
-    let task = document.getElementById("taskInput").value;
-    let date = document.getElementById("dateInput").value;
+    const task = taskInput.value;
+    const date = dateInput.value;
 
     if (!task || !date) {
         alert("Enter task & date");
@@ -155,74 +144,18 @@ function saveGoal() {
     localStorage.setItem("taskName", task);
     localStorage.setItem("targetDate", date);
 
-    document.getElementById("taskName").innerText = task;
-    document.getElementById("setupBox").style.display = "none";
+    taskName.innerText = task;
+    setupBox.style.display = "none";
 }
 
 function editGoal() {
-    document.getElementById("setupBox").style.display = "block";
+    setupBox.style.display = "block";
 }
 
 window.onload = () => {
     if (localStorage.getItem("targetDate")) {
-        document.getElementById("taskName").innerText =
-            localStorage.getItem("taskName");
+        taskName.innerText = localStorage.getItem("taskName");
     } else {
-        document.getElementById("setupBox").style.display = "block";
+        setupBox.style.display = "block";
     }
 };
-
-/* ------------ EGO-KILLER MOTIVATION MESSAGES ------------ */
-
-const egoMessages = [
-    "Stay cool!",
-    "Raise your Ego so high...Losing people fells like blessing not a loss",
-    "Level up so hard...their biggest flex is that they used to know you",
-    "Their is still time To Be who you wanted to be",
-    "Yor life isn't yours if you always care what other think",
-    "Darling they always came back when they see you are glowing without them",
-    "Grow your one skill everyday and one day that skill became your SuperPower!",
-    "I am Billionaire...Ilive Billionaire...I fell Billionaire...I Atrract Billionaire...I think Billionaire...I become Billionaire",
-    "If people don't match your mindset, then change people ,Not the Mindset",
-    "When you start getting in shape and suddenly they start liking you for your personality",
-    "Dont stop when you are tired..stop when you are done",
-    "The day you start respecting yourself and your work... you will unstopable",
-    "Practice makes perfect",
-    "Fuck fellings bro...Focus on the come back",
-    "Mein tujhe bhav hi kha deti hoon.",
-    "Chal tu ab bhag yaha se.",
-    "Tu seriously lene layak hi nahi hai.",
-    "Dont compare yourself to me... to train to impress girls,I train to be the Best",
-    "DSA padhle… warna fir rona mat.",
-    "Uske peeche apna time waste mat kar.",
-    "Focus. Tu bas time barbaad kar raha hai.",
-    "Aaj nahi karegaa toh kabhi nahi karega.",
-    "Jo kaam abhi hai, woh abhi kar.",
-    "Aaj ka pain = Kal ka respect.",
-    "Tu karta hi kya hai poore din?",
-    "Bas phone scroll karna hai kya life me?",
-    "Tu itna potential waste kyu karta rehta hai?",
-    "Time kam hai, excuses zyada mat bana.",
-    "Tu khud se hi peeche reh jayega.",
-    "Failure is just Perception... Not The End",
-    "Ask Yourself Who you are?",
-    "You are not a man...a man doesn't waste hrs on scrolling",
-    "People start missing you when they fail to replace you",
-    "Aage badh — ruk mat, warna pachhtayega."
-];
-
-let egoIndex = 0;
-
-function showEgoMessage() {
-    const msg = egoMessages[egoIndex];
-
-    document.getElementById("motiLine").innerHTML = `<span>${msg}</span>`;
-
-    egoIndex++;
-    if (egoIndex >= egoMessages.length) egoIndex = 0;
-}
-
-
-
-setInterval(showEgoMessage, 5000);
-setTimeout(showEgoMessage, 2000);
